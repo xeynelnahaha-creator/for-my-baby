@@ -60,17 +60,22 @@
     }
 
     #noBtn {
-      background: #ffd166;
-      color: #7a4c00;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 80px;              /* fixed size */
-      height: 40px;
-      padding: 0;
-      box-sizing: border-box;
-      font-size: 1em;
-      transition: top 0.15s ease, left 0.15s ease; /* smooth movement */
+  position: absolute;       /* so it can move freely */
+  top: 20px;
+  left: 20px;               /* initial position */
+  width: 100px;             /* fixed width */
+  height: 40px;             /* fixed height */
+  padding: 0;               /* remove extra padding */
+  background: #ffd166;
+  color: #7a4c00;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1em;
+  white-space: nowrap;      /* prevent text wrapping */
+  box-sizing: border-box;
+  transition: top 0.15s ease, left 0.15s ease;
+}
     }
 
     #message {
@@ -152,3 +157,4 @@
   </script>
 </body>
 </html>
+
