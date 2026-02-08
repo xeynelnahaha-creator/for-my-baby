@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para sa baby ko</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', 'Trebuchet MS', cursive;
+      background: linear-gradient(135deg, #ffb6e6, #cdb4ff, #fff1a8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #fff;
+      padding: 50px;
+      width: 420px;              /* bigger card */
+      border-radius: 35px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+      text-align: center;
+      position: relative;
+      border: 4px solid #ff9edb;
+    }
+
+    .photo {
+      width: 110px;              /* bigger photo */
+      height: 110px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 5px solid #ff9edb;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #ff69b4;
+      margin: 10px 0;
+    }
+
+    h2 {
+      color: #9b5de5;
+      font-size: 1.3em;
+      margin-bottom: 25px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 22px;
+      font-size: 1em;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 10px;
+      font-family: inherit;
+      background: #ff69b4;
+      color: white;
+    }
+
+    #noBtn {
+      background: #ffd166;
+      color: #7a4c00;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 80px;              /* fixed size */
+      height: 40px;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 1em;
+      transition: top 0.15s ease, left 0.15s ease; /* smooth movement */
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ff69b4;
+      min-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <img src="bb.jpg" class="photo" alt="My love ❤️" id="photo" />
+
+    <h1>Hi baby ko</h1>
+    <h2>Will you be my Valentine?</h2>
+
+    <button id="yesBtn" onclick="yesClicked()">YES</button>
+    <button id="noBtn" onmouseover="moveNo()" onclick="return false;">NO</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const messages = [
+      "Yey!! See you sa Feb14 baby ko, mwaaaa loveu so much baby ko.",
+      "Miss na miss na po kita napaka ganda kong gf, sorry po kung lagi tayong nag aaway mahal na mahal po kita",
+      "magiging napaka bait kona, sorry kung di ako nakakatingin agad pag may gusto ka ipakita sakin and pag may kinikwento ka hindi ko naririnig minsan",
+      "Sorry sa lahat baby ko mahal na mahal po kita loveu so much baby mwaaaaa"
+    ];
+
+    const photos = [
+      "bb.jpg",  // original photo
+      "bby.jpg", // second photo
+      "baby.jpg" // third photo
+    ];
+
+    let step = 0;
+
+    function yesClicked() {
+      const messageDiv = document.getElementById("message");
+      const yesBtn = document.getElementById("yesBtn");
+      const photo = document.getElementById("photo");
+
+      if (step === 0) {
+        messageDiv.innerHTML = messages[step];
+        yesBtn.textContent = "Continue";
+        step++;
+      } else if (step === 1) {
+        messageDiv.innerHTML += "<br><br>" + messages[step];
+        step++;
+      } else if (step === 2) {
+        photo.src = photos[step]; // new photo
+        messageDiv.innerHTML += "<br><br>" + messages[step];
+        step++;
+      } else if (step === 3) {
+        messageDiv.innerHTML += "<br><br>" + messages[step];
+        yesBtn.style.display = "none"; 
+        document.getElementById("noBtn").style.display = "none";
+      }
+    }
+
+    function moveNo() {
+      const card = document.getElementById("card");
+      const noBtn = document.getElementById("noBtn");
+
+      const maxX = card.offsetWidth - noBtn.offsetWidth;
+      const maxY = card.offsetHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
+      document.getElementById("message").innerHTML =
+        "Yes lang pwede PreciousAnne Dimagiba!!";
+    }
+  </script>
+</body>
+</html>
